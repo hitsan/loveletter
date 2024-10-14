@@ -2,7 +2,7 @@ use crate::card::card::Card;
 use crate::user::user::*;
 
 #[derive(Debug, PartialEq)]
-struct DiscardPile {
+pub struct DiscardPile {
     name: String,
     cards: Vec<Card>
 }
