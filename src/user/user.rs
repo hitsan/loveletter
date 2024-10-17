@@ -1,13 +1,13 @@
 use crate::card::card::Card;
 
 #[derive(Debug, PartialEq)]
-struct WaitingPlayer {
+pub struct WaitingPlayer {
     name: String,
     card: Card
 }
 
 impl WaitingPlayer {
-    fn new(name: String, card: Card) -> Self {
+    pub fn new(name: String, card: Card) -> Self {
         Self{name, card}
     }
 
@@ -27,7 +27,7 @@ impl WaitingPlayer {
 }
 
 #[derive(Debug, PartialEq)]
-struct CurrentPlayer {
+pub struct CurrentPlayer {
     name: String,
     hand: Card,
     drawn: Card,
@@ -46,13 +46,13 @@ impl CurrentPlayer {
 }
 
 #[derive(Debug, PartialEq)]
-enum Picked {
+pub enum Picked {
     Hand,
     Drawn
 }
 
 #[derive(Debug, PartialEq)]
-struct Looser {
+pub struct Looser {
     name: String,
 }
 
