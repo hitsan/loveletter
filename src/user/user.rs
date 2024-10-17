@@ -17,8 +17,12 @@ impl WaitingPlayer {
         CurrentPlayer::new(name, hand, card)
     }
 
-    fn open(&self) -> &Card {
+    pub fn open(&self) -> &Card {
         &self.card
+    }
+
+    pub fn updated(&self, card: Card) -> Self {
+        Self::new(self.name.clone(), card)
     }
 
     fn loose(&self) -> Looser {

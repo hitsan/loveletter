@@ -77,4 +77,26 @@ mod tests {
         assert_eq!(deck.next(), Some(Card::Princess));
         assert_eq!(deck.next(), None);
     }
+
+    pub fn create_deck() -> Deck {
+        let input = vec![
+            Card::Princess,
+            Card::Minister,
+            Card::General,
+            Card::Magician,
+            Card::Monk,
+            Card::Knight,
+            Card::Clown,
+            Card::Soldier,
+            Card::Monk,
+            Card::Knight,
+            Card::Clown,
+            Card::Soldier,
+            Card::Monk,
+            Card::Knight,
+            Card::Clown,
+            Card::Soldier
+            ];
+        Deck(input)
+    }
 }

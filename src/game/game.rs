@@ -9,6 +9,7 @@ struct Game {
     loosers: Vec<Looser>,
     deck: Deck,
     discard_pile: DiscardPile,
+    sercret_card: Card
 }
 
 impl Game {
@@ -28,11 +29,18 @@ impl Game {
         let players = Self::init_player(player_names, cards);
         let loosers: Vec<Looser> =vec![];
         let discard_pile = DiscardPile::new();
+        let sercret_card = if let Some(card) = deck.next() {
+            card
+        } else {
+            panic!("ssss");
+        };
+
         Self {
             players,
             loosers,
             deck,
-            discard_pile
+            discard_pile,
+            sercret_card
         }
     }
 }
