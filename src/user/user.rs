@@ -7,7 +7,7 @@ pub struct WaitingPlayer {
 }
 
 impl WaitingPlayer {
-    fn new(name: String, card: Card) -> Self {
+    pub fn new(name: String, card: Card) -> Self {
         Self{name, card}
     }
 

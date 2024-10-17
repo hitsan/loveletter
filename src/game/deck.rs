@@ -1,15 +1,31 @@
 use crate::card::card::Card;
 use rand::seq::SliceRandom;
-use rand::thread_rng;
+use rand::{thread_rng, Error};
 
 #[derive(Debug, PartialEq)]
 pub struct Deck(Vec<Card>);
 
 impl Deck {
     pub fn new(mut cards: Vec<Card>) -> Self {
+        if cards.len() < 16 {
+            panic!("Illigal number of card!");
+        }
         let mut rng = thread_rng();
         cards.shuffle(&mut rng);
         Deck(cards) 
+    }
+
+    pub fn pick(&mut self, num: usize) -> Vec<Card> {
+        let mut ret: Vec<Card> = vec![];
+        for _ in 0..num {
+            let card = if let Some(card) = self.next() {
+                card
+            } else {
+                panic!("Cannot start")
+            };
+            ret.push(card);
+        }
+        ret
     }
 }
 
@@ -36,6 +52,14 @@ mod tests {
             Card::Knight,
             Card::Clown,
             Card::Soldier,
+            Card::Monk,
+            Card::Knight,
+            Card::Clown,
+            Card::Soldier,
+            Card::Monk,
+            Card::Knight,
+            Card::Clown,
+            Card::Soldier
             ];
         let deck = Deck::new(input.clone());
         let case = Deck(input);
