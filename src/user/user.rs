@@ -44,7 +44,7 @@ pub struct CurrentPlayer {
 }
 
 impl CurrentPlayer {
-    fn new(name: String, hand: Card, drawn: Card) -> Self {
+    pub fn new(name: String, hand: Card, drawn: Card) -> Self {
         Self{name, hand, drawn}
     }
 
@@ -58,6 +58,12 @@ impl CurrentPlayer {
         let player = WaitingPlayer::new(name.clone(), card);
         let discard = Discard::new(name.clone(), discard);
         (player, discard)
+    }
+
+    pub fn get_strength(&self) -> u32 {
+        let hand = self.hand as u32;
+        let drawn = self.drawn as u32;
+        hand+drawn
     }
 }
 

@@ -11,6 +11,10 @@ impl Discard {
     pub fn new(name: String, card: Card) -> Self {
         Self { name, card }
     }
+
+    pub fn open(&self) -> &Card {
+        &self.card
+    }
 }
 
 #[derive(Debug, PartialEq)]
