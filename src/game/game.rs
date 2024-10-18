@@ -2,6 +2,8 @@ use crate::user::user::*;
 use crate::card::card::Card;
 use crate::game::discard::DiscardPile;
 use crate::game::deck::Deck;
+use rand::seq::SliceRandom;
+use rand::thread_rng;
 
 #[derive(Debug)]
 struct Game {
@@ -21,6 +23,13 @@ impl Game {
         pairs.map(
             |(p, c)| WaitingPlayer::new(p.to_string(), c)
         ).collect()
+    }
+
+    pub fn shuffle(cards: Vec<Card>) -> Vec<Card> {
+        let mut rng = thread_rng();
+        let mut cards = cards.clone();
+        cards.shuffle(&mut rng);
+        cards
     }
 
     pub fn new(player_names: Vec<&str>, cards: Vec<Card>) -> Self {
@@ -50,6 +59,6 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_init() {
+    fn test_shuffle() {
     }
 }

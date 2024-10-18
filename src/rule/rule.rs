@@ -1,5 +1,7 @@
 use crate::card::card::Card;
+use crate::game::discard::Discard;
 use crate::user::user::WaitingPlayer;
+use crate::user::user::Picked;
 use crate::game::deck::Deck;
 
 #[derive(Debug,PartialEq)]
@@ -33,15 +35,15 @@ fn knight_action(current: &WaitingPlayer, opponent: &WaitingPlayer) -> WinOrLose
     }
 }
 
-fn magician_action(player: WaitingPlayer, mut deck: Deck) -> WaitingPlayer {
-    let card = deck.next().unwrap();
-    player.updated(card)
+fn magician_action(player: WaitingPlayer, card: Card) -> (WaitingPlayer, Discard) {
+    let player = player.draw(card);
+    player.drop(Picked::Hand)
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::game::deck::Deck;
+    use crate::game::{deck::Deck, discard};
 
     #[test]
     fn test_soldier() {
@@ -80,32 +82,12 @@ mod tests {
         assert_eq!(result, WinOrLose::Win);
     }
 
-    // #[test]
-    // fn test_magician() {
-    //     let name = String::from("player1");
-    //     let player = WaitingPlayer::new(name.clone(), Card::Princess);
-    //     let input = vec![
-    //         Card::Princess,
-    //         Card::Minister,
-    //         Card::General,
-    //         Card::Magician,
-    //         Card::Monk,
-    //         Card::Knight,
-    //         Card::Clown,
-    //         Card::Soldier,
-    //         Card::Monk,
-    //         Card::Knight,
-    //         Card::Clown,
-    //         Card::Soldier,
-    //         Card::Monk,
-    //         Card::Knight,
-    //         Card::Clown,
-    //         Card::Soldier
-    //         ];
-    //     let deck = Deck(input);
-    //     create_deck();
-    //     let result = magician_action(player, deck);
-    //     assert_eq!(result, WaitingPlayer::new(name, Card::Magician));
-        // assert_eq!(deck, Deck::new(vec![Card::Monk]));
-    // }
+    #[test]
+    fn test_magician() {
+        let name = String::from("player1");
+        let player = WaitingPlayer::new(name.clone(), Card::Princess);
+        let (player, discard) = magician_action(player, Card::Monk);
+        assert_eq!(player, WaitingPlayer::new(name.clone(), Card::Monk));
+        assert_eq!(discard, Discard::new(name.clone(), Card::Princess));
+    }
 }
