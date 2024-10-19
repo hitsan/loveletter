@@ -60,6 +60,6 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_() {
+    fn test_shuffle() {
     }
 }

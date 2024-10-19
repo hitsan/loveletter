@@ -1,3 +1,2 @@
-pub mod game;
-pub mod discard;
-pub mod deck;
+pub mod board;
+pub mod rule;
