@@ -34,10 +34,6 @@ impl Board {
         self.players.insert(0, player);
         Self::new(self.players, self.loosers, self.deck, self.discard_pile, self.sercret_card)
     }
-
-    pub fn peek_player(&self, target: &Name) -> Option<&Player> {
-        self.players.iter().find(|p| p.is(target))
-    }
 }
 
 #[cfg(test)]
@@ -58,30 +54,6 @@ mod tests {
         let discard_pile = DiscardPile::new();
         let sercret_card = Card::Minister;
         Board::new(players, loosers, deck, discard_pile, sercret_card)
-    }
-
-    #[test]
-    fn test_next_player() {
-        let board = init();
-        let (player, board) = board.next_player();
-        let next_player = Player::new("p3".to_string(), Card::Monk);
-        assert_eq!(player, next_player);
-
-        fn player_test_data() -> Board {
-            let player1 = Player::new("p1".to_string(), Card::Clown);
-            let player2 = Player::new("p2".to_string(), Card::Soldier);
-            let players = vec![player1, player2];
-            let loosers: Vec<Looser> = vec![];
-            let deck = Deck::new(vec![
-                Card::Magician,
-                Card::Princess,
-                Card::Knight,
-            ]);
-            let discard_pile = DiscardPile::new();
-            let sercret_card = Card::Minister;
-            Board::new(players, loosers, deck, discard_pile, sercret_card)
-        }
-        assert_eq!(board, player_test_data());
     }
 
     #[test]
@@ -107,15 +79,4 @@ mod tests {
         }
         assert_eq!(board, test_data());
     }
-
-    #[test]
-    fn test_peek_player() {
-        let board = init();
-        let player = board.peek_player(&"p2".to_string()).unwrap();
-        let p2 = Player::new("p2".to_string(), Card::Soldier);
-        assert_eq!(player, &p2);
-
-        let player = board.peek_player(&"p7".to_string());
-        assert_eq!(player, None);
-    }    
 }
