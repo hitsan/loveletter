@@ -6,7 +6,7 @@ use rand::thread_rng;
 pub struct Deck(Vec<Card>);
 
 impl Deck {
-    fn new(cards: Vec<Card>) -> Self {
+    pub fn new(cards: Vec<Card>) -> Self {
         Deck(cards) 
     }
 

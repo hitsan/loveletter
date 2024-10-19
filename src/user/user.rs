@@ -3,13 +3,13 @@ use crate::card::discard::Discard;
 use crate::game::board::Name;
 
 #[derive(Debug, PartialEq)]
-struct Player{
+pub struct Player{
     name: Name,
     card: Card,
 }
 
 #[derive(Debug, PartialEq)]
-struct Looser {
+pub struct Looser {
     name: Name
 }
 
@@ -18,7 +18,7 @@ impl Player {
         Self{name, card}
     }
 
-    fn loose(self) -> (Looser, Discard) {
+    pub fn loose(self) -> (Looser, Discard) {
         match self {
             Self{name, card} => {
                 let looser = Looser::new(name.clone());
@@ -32,6 +32,10 @@ impl Player {
         match self {
             Self{name, card} => (Self::new(name, picked), card),
         }
+    }
+
+    pub fn is(&self, name: &Name) -> bool {
+        self.name == *name
     }
 }
 
