@@ -1,6 +1,7 @@
 use crate::card::card::Card;
 use crate::card::discard::Discard;
 use crate::game::board::Name;
+use crate::user::looser::Looser;
 
 #[derive(Debug, PartialEq)]
 pub struct Player{
@@ -27,17 +28,6 @@ impl Player {
         match self {
             Self{name, card} => (Self::new(name, picked), card),
         }
-    }
-}
-
-#[derive(Debug, PartialEq)]
-pub struct Looser {
-    name: Name
-}
-
-impl Looser {
-    pub fn new(name: Name) -> Self {
-        Self{name}
     }
 }
 

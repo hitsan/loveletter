@@ -1,4 +1,5 @@
-use crate::user::user::{Player, Looser};
+use crate::user::player::Player;
+use crate::user::looser::Looser;
 use crate::card::card::Card;
 use crate::card::deck::Deck;
 use crate::card::discard::DiscardPile;
