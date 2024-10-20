@@ -10,3 +10,17 @@ impl Looser {
         Self{name}
     }
 }
+
+pub struct Loosers(Vec<Looser>);
+
+impl Loosers {
+    pub fn new(loosers: Vec<Looser>) -> Loosers {
+        Loosers(loosers)
+    }
+
+    pub fn added(self, looser: Looser) -> Loosers {
+        let mut loosers = self.0;
+        loosers.push(looser);
+        Loosers(loosers)
+    }
+}
