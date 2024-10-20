@@ -11,6 +11,7 @@ impl Looser {
     }
 }
 
+#[derive(Debug, PartialEq)]
 pub struct Loosers(Vec<Looser>);
 
 impl Loosers {
