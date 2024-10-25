@@ -40,27 +40,11 @@ impl Deck {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::card::card::*;
 
     #[test]
     fn test_init_deck() {
-        let input = vec![
-            Card::Princess,
-            Card::Minister,
-            Card::General,
-            Card::Magician,
-            Card::Monk,
-            Card::Knight,
-            Card::Clown,
-            Card::Soldier,
-            Card::Monk,
-            Card::Knight,
-            Card::Clown,
-            Card::Soldier,
-            Card::Monk,
-            Card::Knight,
-            Card::Clown,
-            Card::Soldier
-            ];
+        let input = init_card();
         let deck = Deck::new(input.clone());
         let case = Deck(input);
         assert_eq!(deck, case);
@@ -69,16 +53,16 @@ mod tests {
     #[test]
     fn test_draw() {
         let input = vec![
-            Card::Princess,
-            Card::Minister,
+            Card::create("princess"),
+            Card::create("minister"),
             ];
         let deck = Deck::new(input);
         let (card, deck) = deck.draw().unwrap();
-        assert_eq!(card, Card::Minister);
-        assert_eq!(deck, Deck::new(vec![Card::Princess]));
+        assert_eq!(card, Card::create("minister"));
+        assert_eq!(deck, Deck::new(vec![Card::create("princess")]));
 
         let (card, deck) = deck.draw().unwrap();
-        assert_eq!(card, Card::Princess);
+        assert_eq!(card, Card::create("princess"));
         assert_eq!(deck, Deck::new(vec![]));
 
         let result = deck.draw();
