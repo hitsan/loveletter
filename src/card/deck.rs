@@ -44,9 +44,8 @@ mod tests {
 
     #[test]
     fn test_init_deck() {
-        let input = init_card();
-        let deck = Deck::new(input.clone());
-        let case = Deck(input);
+        let deck = Deck::new(init_card());
+        let case = Deck(init_card());
         assert_eq!(deck, case);
     }
 
