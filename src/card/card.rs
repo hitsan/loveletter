@@ -1,23 +1,23 @@
-#[derive(Debug, PartialEq, Clone, Copy)]
-pub struct Card {
-    kind: Kind,
-}
+// #[derive(Debug, PartialEq, Clone, Copy)]
+// pub struct Card {
+//     kind: Card,
+// }
 
-impl Card {
-    pub fn new(kind: Kind) -> Self {
-        Self{kind}
-    }
+// impl Card {
+//     pub fn new(kind: Card) -> Self {
+//         Self{kind}
+//     }
 
-    pub fn create(kind: &str) -> Self {
-        let kind = Kind::new(kind);
-        Self::new(kind)
-    }
-}
+//     pub fn create(kind: &str) -> Self {
+//         let kind = Card::new(kind);
+//         Self::new(kind)
+//     }
+// }
 
 pub type Strength = u8;
 
 #[derive(Debug, PartialEq, Clone, Copy)]
-pub enum Kind {
+pub enum Card {
     Princess(Strength),
     Minister(Strength),
     General(Strength),
@@ -28,31 +28,31 @@ pub enum Kind {
     Soldier(Strength),
 }
 
-impl Kind {
+impl Card {
     pub fn new(kind_name: &str) -> Self {
         match kind_name {
-            "princess" => Kind::Princess(8),
-            "minister" => Kind::Minister(7),
-            "general" => Kind::General(6),
-            "magician" => Kind::Magician(5),
-            "monk" => Kind::Monk(4),
-            "knight" => Kind::Knight(3),
-            "clown" => Kind::Clown(2),
-            "soldier" => Kind::Soldier(1),
+            "princess" => Card::Princess(8),
+            "minister" => Card::Minister(7),
+            "general" => Card::General(6),
+            "magician" => Card::Magician(5),
+            "monk" => Card::Monk(4),
+            "knight" => Card::Knight(3),
+            "clown" => Card::Clown(2),
+            "soldier" => Card::Soldier(1),
             _ => panic!("Illegal card")
         }
     }
 }
 
 pub fn init_card() -> Vec<Card> {
-    let princess = Card::new(Kind::Princess(8));
-    let minister = Card::new(Kind::Minister(7));
-    let general = Card::new(Kind::General(6));
-    let magician = Card::new(Kind::Magician(5));
-    let monk = Card::new(Kind::Monk(4));
-    let knight = Card::new(Kind::Knight(3));
-    let clown = Card::new(Kind::Clown(2));
-    let soldier = Card::new(Kind::Soldier(1));
+    let princess = Card::new("princess");
+    let minister = Card::new("minister");
+    let general = Card::new("general");
+    let magician = Card::new("magician");
+    let monk = Card::new("monk");
+    let knight = Card::new("knight");
+    let clown = Card::new("clown");
+    let soldier = Card::new("soldier");
     vec![
         princess,
         minister,

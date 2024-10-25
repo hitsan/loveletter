@@ -53,16 +53,16 @@ mod tests {
     #[test]
     fn test_draw() {
         let input = vec![
-            Card::create("princess"),
-            Card::create("minister"),
+            Card::new("princess"),
+            Card::new("minister"),
             ];
         let deck = Deck::new(input);
         let (card, deck) = deck.draw().unwrap();
-        assert_eq!(card, Card::create("minister"));
-        assert_eq!(deck, Deck::new(vec![Card::create("princess")]));
+        assert_eq!(card, Card::new("minister"));
+        assert_eq!(deck, Deck::new(vec![Card::new("princess")]));
 
         let (card, deck) = deck.draw().unwrap();
-        assert_eq!(card, Card::create("princess"));
+        assert_eq!(card, Card::new("princess"));
         assert_eq!(deck, Deck::new(vec![]));
 
         let result = deck.draw();

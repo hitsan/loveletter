@@ -79,26 +79,26 @@ mod tests {
     #[test]
     fn test_loose() {
         let name = "player".to_string();
-        let player = Player::new(name.clone(), Card::create("minister"));
+        let player = Player::new(name.clone(), Card::new("minister"));
         let (looser, card) = player.loose();
         assert_eq!(looser, Looser::new(name.clone()));
-        let discard = Discard::new(name.clone(), Card::create("minister"));
+        let discard = Discard::new(name.clone(), Card::new("minister"));
         assert_eq!(card, discard);
     }
 
     #[test]
     fn test_exchange() {
         let name = "player".to_string();
-        let player = Player::new(name.clone(), Card::create("clown"));
-        let (player, card) = player.exchange(Card::create("general"));
-        assert_eq!(player, Player::new(name.clone(), Card::create("general")));
-        assert_eq!(card, Card::create("clown"));
+        let player = Player::new(name.clone(), Card::new("clown"));
+        let (player, card) = player.exchange(Card::new("general"));
+        assert_eq!(player, Player::new(name.clone(), Card::new("general")));
+        assert_eq!(card, Card::new("clown"));
     }
 
     fn players_data() -> Players {
-        let player1 = Player::new("p1".to_string(), Card::create("clown"));
-        let player2 = Player::new("p2".to_string(), Card::create("soldier"));
-        let player3 = Player::new("p3".to_string(), Card::create("monk"));
+        let player1 = Player::new("p1".to_string(), Card::new("clown"));
+        let player2 = Player::new("p2".to_string(), Card::new("soldier"));
+        let player3 = Player::new("p3".to_string(), Card::new("monk"));
         let players = vec![player1, player2, player3];
         Players(players)
     }
@@ -107,13 +107,13 @@ mod tests {
     fn test_pick_current_player() {
         let players = players_data();
         let player = players.pick_current_player();
-        assert_eq!(player, &Player::new("p1".to_string(), Card::create("clown")));
+        assert_eq!(player, &Player::new("p1".to_string(), Card::new("clown")));
     }
 
     fn rotated_players_data() -> Players {
-        let player1 = Player::new("p1".to_string(), Card::create("clown"));
-        let player2 = Player::new("p2".to_string(), Card::create("soldier"));
-        let player3 = Player::new("p3".to_string(), Card::create("monk"));
+        let player1 = Player::new("p1".to_string(), Card::new("clown"));
+        let player2 = Player::new("p2".to_string(), Card::new("soldier"));
+        let player3 = Player::new("p3".to_string(), Card::new("monk"));
         let players = vec![player2, player3, player1];
         Players(players)
     }
@@ -126,8 +126,8 @@ mod tests {
     }
 
     fn droped_players_data() -> Players {
-        let player2 = Player::new("p2".to_string(), Card::create("soldier"));
-        let player3 = Player::new("p3".to_string(), Card::create("monk"));
+        let player2 = Player::new("p2".to_string(), Card::new("soldier"));
+        let player3 = Player::new("p3".to_string(), Card::new("monk"));
         let players = vec![player2, player3];
         Players(players)
     }
@@ -137,7 +137,7 @@ mod tests {
         let players = players_data();
         let name = "p1".to_string();
         let (looser, players) = players.droped(&name).unwrap();
-        let player = Player::new("p1".to_string(), Card::create("clown"));
+        let player = Player::new("p1".to_string(), Card::new("clown"));
         assert_eq!(looser, player);
         assert_eq!(players, droped_players_data());
     }
@@ -146,7 +146,7 @@ mod tests {
     fn test_peek_player() {
         let players = players_data();
         let player = players.peek(&"p2".to_string()).unwrap();
-        let p2 = Player::new("p2".to_string(), Card::create("soldier"));
+        let p2 = Player::new("p2".to_string(), Card::new("soldier"));
         assert_eq!(player, &p2);
 
         let player = players.peek(&"p7".to_string());
