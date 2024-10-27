@@ -1,42 +1,50 @@
 pub type Strength = u8;
 
-// #[derive(Debug, PartialEq, Clone, Copy)]
-// pub enum Card {
-//     Princess(Strength),
-//     Minister(Strength),
-//     General(Strength),
-//     Magician(Strength),
-//     Monk(Strength),
-//     Knight(Strength),
-//     Clown(Strength),
-//     Soldier(Strength),
-// }
+#[derive(Debug, PartialEq)]
+pub enum Class {
+    Princess(Strength),
+    Minister(Strength),
+    General(Strength),
+    Magician(Strength),
+    Monk(Strength),
+    Knight(Strength),
+    Clown(Strength),
+    Soldier(Strength),
+}
 
 #[derive(Debug, PartialEq)]
-pub enum Card {
-    Princess(Strength, Effect),
-    Minister(Strength, Effect),
-    General(Strength, Effect),
-    Magician(Strength, Effect),
-    Monk(Strength, Effect),
-    Knight(Strength, Effect),
-    Clown(Strength, Effect),
-    Soldier(Strength, Effect),
+pub struct Card {
+    class: Class,
+    effect: Effect,
 }
 
 impl Card {
-    pub fn new(kind_name: &str) -> Self {
-        match kind_name {
-            "princess" => Card::Princess(8, Effect::Discarded),
-            "minister" => Card::Minister(7, Effect::Having),
-            "general" => Card::General(6, Effect::Using),
-            "magician" => Card::Magician(5, Effect::Using),
-            "monk" => Card::Monk(4, Effect::Wating),
-            "knight" => Card::Knight(3, Effect::Using),
-            "clown" => Card::Clown(2, Effect::Using),
-            "soldier" => Card::Soldier(1, Effect::Using),
-            _ => panic!("Illegal card")
-        }
+    fn new(class: Class, effect: Effect) -> Self {
+        Self{class, effect}
+    }
+    pub  fn princess() -> Self {
+        Self::new(Class::Princess(8), Effect::Discarded)
+    }
+    pub  fn minister() -> Self {
+        Self::new(Class::Minister(7), Effect::Having)
+    }
+    pub  fn general() -> Self {
+        Self::new(Class::General(6), Effect::Using)
+    }
+    pub  fn magician() -> Self {
+        Self::new(Class::Magician(5), Effect::Using)
+    }
+    pub  fn monk() -> Self {
+        Self::new(Class::Monk(4), Effect::Wating)
+    }
+    pub  fn knight() -> Self {
+        Self::new(Class::Knight(3), Effect::Using)
+    }
+    pub  fn clown() -> Self {
+        Self::new(Class::Clown(2), Effect::Using)
+    }
+    pub  fn soldier() -> Self {
+        Self::new(Class::Soldier(1), Effect::Using)
     }
 }
 #[derive(Debug, PartialEq)]
@@ -48,14 +56,14 @@ enum Effect {
 }
 
 pub fn init_card() -> Vec<Card> {
-    let princess = Card::new("princess");
-    let minister = Card::new("minister");
-    let general = Card::new("general");
-    let magician = Card::new("magician");
-    let monk = Card::new("monk");
-    let knight = Card::new("knight");
-    let clown = Card::new("clown");
-    let soldier = Card::new("soldier");
+    let princess = Card::princess();
+    let minister = Card::minister();
+    let general = Card::general();
+    let magician = Card::magician();
+    let monk = Card::monk();
+    let knight = Card::knight();
+    let clown = Card::clown();
+    let soldier = Card::soldier();
     vec![
         princess,
         minister,
